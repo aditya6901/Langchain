@@ -36,7 +36,7 @@ def get_current_weather(location: str) -> str:
 
 
 @tool('locate_user', description="Locate the user based on the context")
-def locate_user(runtime: ToolRuntime['Context']):
+def locate_user(runtime: ToolRuntime[Context]):
     match runtime.context.user_id:
         case "user_1":
             return "New York."
@@ -54,7 +54,7 @@ model = init_chat_model(
 
 checkpointer = InMemorySaver()
 
-#creating a agent which calls api of weather and returns the current weather for a given location. The agent is also humorous and cracks jokes.
+#creating a agent which calls api of weather and returns the current weather for a given location. 
 #we are using get_current_weather tool to get the current weather for a given location. 
 agent = create_agent(
     model=model,
@@ -67,7 +67,7 @@ agent = create_agent(
 
 config = {"configurable": {"thread_id": "thread-1"}}
 
-response = agent.invoke(
+response = agent.invoke( 
     {
         "messages": [
             {"role": "user", "content": "What is the current weather like?"}
